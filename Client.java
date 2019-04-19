@@ -1,11 +1,11 @@
-package com.kgc.pet.day21.homework.three;
+﻿package com.kgc.pet.day21.homework.three;
 
 import java.io.*;
 import java.net.Socket;
 
 public class Client {
     public static void main(String[] args) {
-        try {//发送
+        try {//发送图片
             Socket socket = new Socket("localhost", 111);
             OutputStream os = socket.getOutputStream();
             DataOutputStream dos = new DataOutputStream(os);
