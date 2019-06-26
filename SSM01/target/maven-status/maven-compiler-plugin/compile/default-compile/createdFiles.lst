@@ -1,0 +1,17 @@
+com\kgc\pojo\EmpExample$Criterion.class
+com\kgc\pojo\Dept2Example$Criterion.class
+com\kgc\pojo\EmpExample$GeneratedCriteria.class
+com\kgc\pojo\EmpExample.class
+com\kgc\mapper\EmpMapper.class
+com\kgc\service\impl\EmpServiceImpl.class
+com\kgc\pojo\Dept2.class
+com\kgc\mapper\Dept2Mapper.class
+com\kgc\pojo\pageBean.class
+com\kgc\pojo\Emp.class
+com\kgc\controller\EmpController.class
+com\kgc\pojo\Dept2Example.class
+com\kgc\pojo\Dept2Example$Criteria.class
+com\kgc\pojo\Dept2Example$GeneratedCriteria.class
+com\kgc\pojo\EmpExample$Criteria.class
+com\kgc\service\IEmpService.class
+com\kgc\controller\Controller2.class

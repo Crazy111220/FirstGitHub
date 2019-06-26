@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kgc.mapper.EmpMapper">
+  <resultMap id="BaseResultMap" type="com.kgc.pojo.Emp">
+    <id column="number" jdbcType="INTEGER" property="number" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="job" jdbcType="CHAR" property="job" />
+    <result column="mgr" jdbcType="INTEGER" property="mgr" />
+    <result column="hiredate" jdbcType="DATE" property="hiredate" />
+    <result column="sal" jdbcType="DOUBLE" property="sal" />
+    <result column="comm" jdbcType="DOUBLE" property="comm" />
+    <result column="deptno" jdbcType="INTEGER" property="deptno" />
+    <result column="imgUrl" jdbcType="VARCHAR" property="imgurl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    number, name, job, mgr, hiredate, sal, comm, deptno, imgUrl
+  </sql>
+  <select id="selectByExample" parameterType="com.kgc.pojo.EmpExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from emp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="rows != null">
+      <if test="offset != null">
+        limit ${offset}, ${rows}
+      </if>
+      <if test="offset == null">
+        limit ${rows}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from emp
+    where number = #{number,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from emp
+    where number = #{number,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.pojo.EmpExample">
+    delete from emp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.pojo.Emp">
+    insert into emp (number, name, job, 
+      mgr, hiredate, sal, comm, 
+      deptno, imgUrl)
+    values (#{number,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{job,jdbcType=CHAR}, 
+      #{mgr,jdbcType=INTEGER}, #{hiredate,jdbcType=DATE}, #{sal,jdbcType=DOUBLE}, #{comm,jdbcType=DOUBLE}, 
+      #{deptno,jdbcType=INTEGER}, #{imgurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.pojo.Emp">
+    insert into emp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="mgr != null">
+        mgr,
+      </if>
+      <if test="hiredate != null">
+        hiredate,
+      </if>
+      <if test="sal != null">
+        sal,
+      </if>
+      <if test="comm != null">
+        comm,
+      </if>
+      <if test="deptno != null">
+        deptno,
+      </if>
+      <if test="imgurl != null">
+        imgUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=CHAR},
+      </if>
+      <if test="mgr != null">
+        #{mgr,jdbcType=INTEGER},
+      </if>
+      <if test="hiredate != null">
+        #{hiredate,jdbcType=DATE},
+      </if>
+      <if test="sal != null">
+        #{sal,jdbcType=DOUBLE},
+      </if>
+      <if test="comm != null">
+        #{comm,jdbcType=DOUBLE},
+      </if>
+      <if test="deptno != null">
+        #{deptno,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null">
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.pojo.EmpExample" resultType="java.lang.Long">
+    select count(*) from emp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update emp
+    <set>
+      <if test="record.number != null">
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.job != null">
+        job = #{record.job,jdbcType=CHAR},
+      </if>
+      <if test="record.mgr != null">
+        mgr = #{record.mgr,jdbcType=INTEGER},
+      </if>
+      <if test="record.hiredate != null">
+        hiredate = #{record.hiredate,jdbcType=DATE},
+      </if>
+      <if test="record.sal != null">
+        sal = #{record.sal,jdbcType=DOUBLE},
+      </if>
+      <if test="record.comm != null">
+        comm = #{record.comm,jdbcType=DOUBLE},
+      </if>
+      <if test="record.deptno != null">
+        deptno = #{record.deptno,jdbcType=INTEGER},
+      </if>
+      <if test="record.imgurl != null">
+        imgUrl = #{record.imgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update emp
+    set number = #{record.number,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=CHAR},
+      job = #{record.job,jdbcType=CHAR},
+      mgr = #{record.mgr,jdbcType=INTEGER},
+      hiredate = #{record.hiredate,jdbcType=DATE},
+      sal = #{record.sal,jdbcType=DOUBLE},
+      comm = #{record.comm,jdbcType=DOUBLE},
+      deptno = #{record.deptno,jdbcType=INTEGER},
+      imgUrl = #{record.imgurl,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.pojo.Emp">
+    update emp
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="job != null">
+        job = #{job,jdbcType=CHAR},
+      </if>
+      <if test="mgr != null">
+        mgr = #{mgr,jdbcType=INTEGER},
+      </if>
+      <if test="hiredate != null">
+        hiredate = #{hiredate,jdbcType=DATE},
+      </if>
+      <if test="sal != null">
+        sal = #{sal,jdbcType=DOUBLE},
+      </if>
+      <if test="comm != null">
+        comm = #{comm,jdbcType=DOUBLE},
+      </if>
+      <if test="deptno != null">
+        deptno = #{deptno,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null">
+        imgUrl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where number = #{number,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.pojo.Emp">
+    update emp
+    set name = #{name,jdbcType=CHAR},
+      job = #{job,jdbcType=CHAR},
+      mgr = #{mgr,jdbcType=INTEGER},
+      hiredate = #{hiredate,jdbcType=DATE},
+      sal = #{sal,jdbcType=DOUBLE},
+      comm = #{comm,jdbcType=DOUBLE},
+      deptno = #{deptno,jdbcType=INTEGER},
+      imgUrl = #{imgurl,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
+  </update>
+</mapper>
