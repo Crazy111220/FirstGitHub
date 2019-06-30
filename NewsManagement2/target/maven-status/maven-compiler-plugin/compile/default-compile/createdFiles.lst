@@ -1,0 +1,16 @@
+com\kgc\service\impl\News_DetailServiceImpl.class
+com\kgc\controller\controller.class
+com\kgc\pojo\News_DetailExample$Criteria.class
+com\kgc\pojo\News_DetailExample$Criterion.class
+com\kgc\pojo\pageBean.class
+com\kgc\pojo\News_Detail.class
+com\kgc\service\INews_DetailService.class
+com\kgc\pojo\News_Comment.class
+com\kgc\pojo\News_DetailExample.class
+com\kgc\mapper\News_CommentMapper.class
+com\kgc\pojo\News_CommentExample.class
+com\kgc\pojo\News_DetailExample$GeneratedCriteria.class
+com\kgc\pojo\News_CommentExample$GeneratedCriteria.class
+com\kgc\pojo\News_CommentExample$Criteria.class
+com\kgc\pojo\News_CommentExample$Criterion.class
+com\kgc\mapper\News_DetailMapper.class
